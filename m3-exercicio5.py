@@ -1,21 +1,26 @@
 import streamlit as st
 import pandas as pd
 
-# Criação do DataFrame
-dados = {
-    'nomeServidor': ['Carlos', 'Ana', 'Marcos'],
-    'salario': [3500, 4200, 3900]
-}
-df = pd.DataFrame(dados)
-
 # Título da aplicação
-st.title("Seleção de Servidores")
+st.title("Carregamento de Dados de Servidores")
 
-# Criação do multiselect com os nomes dos servidores
-servidores_selecionados = st.multiselect(
-    'Escolha o(s) servidor(es):',
-    options=df['nomeServidor'].tolist()
-)
+# Upload do arquivo CSV
+uploaded_file = st.file_uploader("Escolha um arquivo CSV", type="csv")
 
-# Exibir os servidores selecionados
-st.write("Servidores selecionados:", servidores_selecionados)
+# Verifica se o arquivo foi carregado
+if uploaded_file is not None:
+    # Leitura do arquivo para um DataFrame
+    df = pd.read_csv(uploaded_file)
+    
+    # Exibe o DataFrame
+    st.write("Dados dos Servidores:")
+    st.dataframe(df)
+
+    # Criação do multiselect para selecionar os nomes dos servidores
+    servidores_selecionados = st.multiselect(
+        'Escolha o(s) servidor(es):',
+        options=df['Nome'].tolist() if 'Nome' in df.columns else []
+    )
+    
+    # Exibir os servidores selecionados
+    st.write("Servidores selecionados:", servidores_selecionados)
