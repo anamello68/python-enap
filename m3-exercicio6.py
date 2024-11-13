@@ -26,7 +26,7 @@ st.dataframe(df.head(num_linhas))
 comunidades_por_estado = df.groupby('NM_UF').size().sort_values(ascending=False)
     
 # Plotar o gráfico de barras
-fig, ax = plt.subplots(figsize=(10, 6))
+fig, ax = plt.subplots(figsize=(15, 6))
 comunidades_por_estado.plot(kind='bar', color='skyblue', ax=ax)
 ax.set_title('Número de Comunidades por Estado')
 ax.set_xlabel('Estado')
