@@ -5,4 +5,10 @@ url = 'https://raw.githubusercontent.com/adrianalite/datasets/main/BR_LQs_CD2022
 
 df = pd.read_csv(url)
 
-st.title('Localização das comunidades quilombolas (2022)')  
+st.title('Localização das comunidades quilombolas (2022)') 
+
+# Exibe o DataFrame
+st.write("Dados dos Quilombolas:")
+st.dataframe(df)
+
+
