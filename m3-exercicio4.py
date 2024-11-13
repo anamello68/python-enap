@@ -1,3 +1,5 @@
+import streamlit as st
+
 # criando elementos gráficos
 '''Informar como colher os dados através de variáveis'''
 x = st.checkbox('Sim')
