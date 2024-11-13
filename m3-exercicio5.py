@@ -21,6 +21,6 @@ if uploaded_file is not None:
         'Escolha o(s) servidor(es):',
         options=df['Nome'].tolist() if 'Nome' in df.columns else []
     )
-    
+    df_filtrado = df[df['Nome'] == servidores_selecionados]
     # Exibir os servidores selecionados
-    st.write("Servidores selecionados:", servidores_selecionados)
+    st.write("Servidores selecionados:", df_filtrado)
