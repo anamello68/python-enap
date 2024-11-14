@@ -135,7 +135,7 @@ st.bar_chart(df['NM_MUNIC_UF'].value_counts()[:10])
 col1, col2, col3 = st.columns(3)
 col1.metric('# Municípios', len(df['NM_MUNIC'].unique()))
 col2.metric('# Comunidades', len(df['NM_AGLOM'].unique()))
-col3.metric('Estado com + Comunidades', df['NM_UF'].value_counts().sort_values(ascending=False).index[0], df['NM_UF'].value_counts().sort_values(ascending=False).values[0])
+col3.metric('Estado com mais Comunidades', df['NM_UF'].value_counts().sort_values(ascending=False).index[0], df['NM_UF'].value_counts().sort_values(ascending=False).values[0])
 
 numero = st.slider('Selecione um número de linhas a serem exibidas', min_value = 0, max_value = 100, value=10)
 st.write(df.head(numero))
