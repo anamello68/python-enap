@@ -37,6 +37,20 @@ st.write("A quantidade de comunidades quilombolas é " + str(qtdeComunidades))
 st.header('Número de comunidades por UF')
 st.bar_chart(df['NM_UF'].value_counts())
 
+uf_counts = df['NM_UF'].value_counts().sort_values(ascending=False)
+uf_counts_df = pd.DataFrame({'UF': uf_counts.index, 'Quantidade': uf_counts.values})
+
+# Cria um gráfico de barras ordenado com Altair
+chart = alt.Chart(uf_counts_df).mark_bar(color="skyblue").encode(
+    x=alt.X('Quantidade:Q', title='Quantidade de Comunidades'),
+    y=alt.Y('UF:N', sort='-x', title='Unidade Federativa')
+).properties(
+    title="Número de comunidades por UF - ordenado"
+)
+
+# Exibe o gráfico de barras com Streamlit
+st.altair_chart(chart, use_container_width=True)
+
 st.header('Os dez municípios com mais comunidades quilombolas')
 st.bar_chart(df['NM_MUNIC'].value_counts()[:10])
 
