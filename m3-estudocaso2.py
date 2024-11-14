@@ -40,12 +40,17 @@ st.bar_chart(df['NM_UF'].value_counts())
 uf_counts = df['NM_UF'].value_counts().sort_values(ascending=False)
 uf_counts_df = pd.DataFrame({'UF': uf_counts.index, 'Quantidade': uf_counts.values})
 
-# Cria um gráfico de barras ordenado com Altair
+# Cria um gráfico de barras com rótulos sobre as barras
 chart = alt.Chart(uf_counts_df).mark_bar(color="skyblue").encode(
     x=alt.X('Quantidade:Q', title='Quantidade de Comunidades'),
-    y=alt.Y('UF:N', sort='-x', title='Unidade Federativa')
+    y=alt.Y('UF:N', sort='-x', title='Unidade Federativa'),
+    text='Quantidade:Q'  # Adiciona os rótulos com o valor de 'Quantidade'
 ).properties(
     title="Número de comunidades por UF - ordenado"
+).configure_text(
+    align='center',  # Alinha o texto no centro da barra
+    baseline='middle',
+    fontSize=12
 )
 
 # Exibe o gráfico de barras com Streamlit
@@ -54,5 +59,5 @@ st.altair_chart(chart, use_container_width=True)
 st.header('Os dez municípios com mais comunidades quilombolas')
 st.bar_chart(df['NM_MUNIC'].value_counts()[:10])
 
-numero = st.slider('Selecione um número de linhas a serem exibidas', min_value = 0, max_value = 100)
+numero = st.slider('Selecione um número de linhas a serem exibidas', min_value = 0, max_value = 100, value=10)
 st.write(df.head(numero))
