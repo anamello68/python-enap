@@ -41,17 +41,25 @@ uf_counts = df['NM_UF'].value_counts().sort_values(ascending=False)
 uf_counts_df = pd.DataFrame({'UF': uf_counts.index, 'Quantidade': uf_counts.values})
 
 # Cria um gráfico de barras com rótulos sobre as barras
-chart = alt.Chart(uf_counts_df).mark_bar(color="skyblue").encode(
+bar_chart = alt.Chart(uf_counts_df).mark_bar(color="skyblue").encode(
     x=alt.X('Quantidade:Q', title='Quantidade de Comunidades'),
-    y=alt.Y('UF:N', sort='-x', title='Unidade Federativa'),
-    text='Quantidade:Q'  # Adiciona os rótulos com o valor de 'Quantidade'
+    y=alt.Y('UF:N', sort='-x', title='Unidade Federativa')
 ).properties(
     title="Número de comunidades por UF - ordenado"
-).configure_text(
-    align='center',  # Alinha o texto no centro da barra
-    baseline='middle',
-    fontSize=12
 )
+
+# Adiciona rótulos sobre as barras
+text = bar_chart.mark_text(
+    align='center',  # Alinha o texto no centro da barra
+    baseline='middle',  # Alinha verticalmente ao meio da barra
+    fontSize=12,  # Define o tamanho da fonte
+    color='black'  # Cor do texto
+).encode(
+    text='Quantidade:Q'  # Coloca o valor da 'Quantidade' como o texto
+)
+
+# Junta o gráfico de barras com os rótulos
+chart = bar_chart + text
 
 # Exibe o gráfico de barras com Streamlit
 st.altair_chart(chart, use_container_width=True)
