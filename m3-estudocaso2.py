@@ -35,4 +35,4 @@ st.write("A quantidade de comunidades quilombolas é " + str(qtdeComunidades))
 
 # Exibe o título e o gráfico de barras com os dados ordenados
 st.header('Número de comunidades por UF')
-st.bar_chart(data=df, x=df['NM_UF'].value_counts().index, y=df['NM_UF'].value_counts().values))
+st.bar_chart(data=df, x=df['NM_UF'].value_counts().index, y=df['NM_UF'].value_counts().values)
