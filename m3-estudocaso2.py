@@ -17,7 +17,7 @@ list = ['Lat_d', 'Long_d']
 # convertendo para numeros
 df[list] = df[list].apply(pd.to_numeric, errors='coerce')
 
-estados = df['NM_UF'].unique()
+estados = sorted(df['NM_UF'].unique())
 estadoFiltro = st.selectbox(
     'Qual estado selecionar?',
      estados)
