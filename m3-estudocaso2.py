@@ -132,8 +132,9 @@ st.altair_chart(chart, use_container_width=True)
 st.header('Os dez municípios com mais comunidades quilombolas')
 st.bar_chart(df['NM_MUNIC_UF'].value_counts()[:10])
 
-st.metric('# Municípios', len(df['NM_MUNIC'].unique()))
-st.metric('# Comunidades', len(df['NM_AGLOM'].unique()))
+col1, col2 = st.columns(2)
+col1.metric('# Municípios', len(df['NM_MUNIC'].unique()))
+col2.metric('# Comunidades', len(df['NM_AGLOM'].unique()))
 
 numero = st.slider('Selecione um número de linhas a serem exibidas', min_value = 0, max_value = 100, value=10)
 st.write(df.head(numero))
