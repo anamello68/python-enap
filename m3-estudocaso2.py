@@ -15,8 +15,44 @@ st.dataframe(df)
 
 df.drop(columns=['Unnamed: 0'], inplace=True)
 list = ['Lat_d', 'Long_d']
-# convertendo para numeros
+# Convertendo para numeros
 df[list] = df[list].apply(pd.to_numeric, errors='coerce')
+
+# Dicionário com os estados e suas respectivas siglas
+estados_siglas = {
+    'ACRE': 'AC',
+    'ALAGOAS': 'AL',
+    'AMAPÁ': 'AP',
+    'AMAZONAS': 'AM',
+    'BAHIA': 'BA',
+    'CEARÁ': 'CE',
+    'ESPÍRITO SANTO': 'ES',
+    'GOIÁS': 'GO',
+    'MARANHÃO': 'MA',
+    'MATO GROSSO': 'MT',
+    'MATO GROSSO DO SUL': 'MS',
+    'MINAS GERAIS': 'MG',
+    'PARÁ': 'PA',
+    'PARAÍBA': 'PB',
+    'PARANÁ': 'PR',
+    'PERNAMBUCO': 'PE',
+    'PIAUÍ': 'PI',
+    'RIO DE JANEIRO': 'RJ',
+    'RIO GRANDE DO NORTE': 'RN',
+    'RIO GRANDE DO SUL': 'RS',
+    'RONDÔNIA': 'RO',
+    'RORAIMA': 'RR',
+    'SANTA CATARINA': 'SC',
+    'SÃO PAULO': 'SP',
+    'SERGIPE': 'SE',
+    'TOCANTINS': 'TO'
+}
+
+# Criação da nova coluna 'Sigla_UF' usando o dicionário
+df['SIGLA_UF'] = df['NM_UF'].map(estados_siglas)
+
+# Criar uma nova coluna concatenando o nome do município com a sigla do Estado
+df['NM_MUNIC_UF'] = df['NM_MUNIC'] + ' - ' + df['SIGLA_UF']
 
 estados = sorted(df['NM_UF'].unique())
 estadoFiltro = st.selectbox(
@@ -65,7 +101,7 @@ chart = bar_chart + text
 st.altair_chart(chart, use_container_width=True)
 
 st.header('Os dez municípios com mais comunidades quilombolas')
-st.bar_chart(df['NM_MUNIC'].value_counts()[:10])
+st.bar_chart(df[''NM_MUNIC_UF''].value_counts()[:10])
 
 numero = st.slider('Selecione um número de linhas a serem exibidas', min_value = 0, max_value = 100, value=10)
 st.write(df.head(numero))
