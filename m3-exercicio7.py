@@ -60,7 +60,7 @@ contagem_estados = dadosFiltrados['siglaUf'].value_counts()
 
 # Criar gráfico de barras
 fig, ax = plt.subplots()
-ax.bar(contagem_estados.index, contagem_estados.values, color='skyblue')
+bars = ax.bar(contagem_estados.index, contagem_estados.values, color='skyblue')
 ax.set_title(f"Número de deputados {opcao} por estado")
 ax.set_xlabel("Estado")
 ax.set_ylabel("Número de Deputados(as)")
