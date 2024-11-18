@@ -110,5 +110,11 @@ ax.set_xlabel("Estado")
 ax.set_ylabel("Número de Deputados(as)")
 ax.set_xticklabels(sexo_counts_by_uf.index, rotation=45, ha="right")
 
+# Adicionar os rótulos nas barras
+for p in ax.patches:
+    ax.annotate(f'{p.get_height():.0f}', 
+                (p.get_x() + p.get_width() / 2., p.get_height() - 5), 
+                ha='center', va='bottom', color='black', fontsize=8)
+
 # Exibir no Streamlit
 st.pyplot(fig)
