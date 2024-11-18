@@ -111,12 +111,19 @@ ax.set_ylabel("Número de Deputados(as)")
 ax.set_xticklabels(sexo_counts_by_uf.index, rotation=45, ha="right")
 
 # Adicionar os rótulos nas barras para ambos os sexos
-for p in ax.patches:
-    # Para cada barra, vamos adicionar o valor no topo de cada uma
-    ax.annotate(f'{p.get_height():.0f}', 
-                (p.get_x() + p.get_width() / 2., p.get_height() + 5), 
-                ha='center', va='bottom', color='black', fontsize=8)
-
+for i, p in enumerate(ax.patches):
+    height = p.get_height()
+    width = p.get_width()
+    x = p.get_x() + width / 2  # Posição no eixo X (meio da barra)
+    
+    # Calculando a altura acumulada para posicionar os rótulos corretamente
+    y = p.get_y() + height / 2  # Posição no eixo Y (metade da altura da barra empilhada)
+    
+    # Adicionando o rótulo apenas se houver algum valor
+    if height > 0:
+        ax.annotate(f'{height:.0f}', 
+                    (x, y), 
+                    ha='center', va='center', color='black', fontsize=8)
 
 # Exibir no Streamlit
 st.pyplot(fig)
