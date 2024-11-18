@@ -67,6 +67,17 @@ ax.set_ylabel("Número de Deputados(as)")
 # Rotacionar os rótulos do eixo X
 ax.tick_params(axis='x', rotation=90)
 
+# Adicionar rótulos nas barras
+for bar in bars:
+    height = bar.get_height()
+    ax.text(
+        bar.get_x() + bar.get_width() / 2,  # Posição central na barra
+        height,                            # Altura do rótulo
+        f'{int(height)}',                  # Texto do rótulo
+        ha='center',                       # Alinhamento horizontal
+        va='bottom'                        # Alinhamento vertical
+    )
+
 # Exibir no Streamlit
 st.pyplot(fig)
 
