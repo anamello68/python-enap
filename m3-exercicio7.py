@@ -35,4 +35,9 @@ st.write('Você selecionou: ', opcao)
 
 # Mostrar o dataframe filtrado por gênero
 dadosFiltrados = df[df['sexo'] == opcao]
-st.write(dadosFiltrados)
+
+if st.checkbox('Mostrar tabela'):
+  st.write(dadosFiltrados)
+st.header('Nº de Deputados por gênero')
+st.bar_chart(df['sexo'].value_counts())
+
