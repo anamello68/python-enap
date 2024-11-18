@@ -104,17 +104,19 @@ for sigla, row in sexo_counts_by_uf.iterrows():
 
 # Criar gráfico de barras
 fig, ax = plt.subplots()
-sexo_counts_by_uf[['Homens', 'Mulheres']].plot(kind='bar', stacked=True, ax=ax, color=['blue', 'pink'])
+sexo_counts_by_uf[['Homens', 'Mulheres']].plot(kind='bar', stacked=True, ax=ax, color=['skyblue', 'pink'])
 ax.set_title("Número de Deputados por Sexo")
 ax.set_xlabel("Estado")
 ax.set_ylabel("Número de Deputados(as)")
 ax.set_xticklabels(sexo_counts_by_uf.index, rotation=45, ha="right")
 
-# Adicionar os rótulos nas barras
+# Adicionar os rótulos nas barras para ambos os sexos
 for p in ax.patches:
+    # Para cada barra, vamos adicionar o valor no topo de cada uma
     ax.annotate(f'{p.get_height():.0f}', 
-                (p.get_x() + p.get_width() / 2., p.get_height() - 5), 
+                (p.get_x() + p.get_width() / 2., p.get_height() + 5), 
                 ha='center', va='bottom', color='black', fontsize=8)
+
 
 # Exibir no Streamlit
 st.pyplot(fig)
