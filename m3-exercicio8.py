@@ -16,7 +16,7 @@ df['id_nome'] = df['id'].astype(str) + ' - ' + df['nome']
 selected = st.selectbox('Selecione um ID', df['id_nome'])
 
 # Extrair o id a partir da seleção
-selected_id = selected.split(' - ')[0]
+selected_id = selected.split(' - ')[0].strip()
 
 # Exibir o id selecionado
 st.write(f'ID Selecionado: {selected_id}')
