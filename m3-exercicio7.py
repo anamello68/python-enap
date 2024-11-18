@@ -108,7 +108,7 @@ sexo_counts_by_uf[['Homens', 'Mulheres']].plot(kind='bar', stacked=True, ax=ax, 
 ax.set_title("Número de Deputados por Sexo")
 ax.set_xlabel("Estado")
 ax.set_ylabel("Número de Deputados(as)")
-ax.set_xticklabels(sexo_counts_by_uf.index, rotation=45, ha="right")
+ax.set_xticklabels(sexo_counts_by_uf.index, rotation=45, ha="center")
 
 # Adicionar os rótulos nas barras para ambos os sexos
 for i, p in enumerate(ax.patches):
