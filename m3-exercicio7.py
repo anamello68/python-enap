@@ -125,5 +125,12 @@ for i, p in enumerate(ax.patches):
                     (x, y), 
                     ha='center', va='center', color='black', fontsize=8)
 
+# Adicionar o total de deputados acima de cada barra (somente o número)
+for i, row in sexo_counts_by_uf.iterrows():
+    total = row['Total']
+    ax.annotate(f'{total}',  # Exibir apenas o número total
+                (i, total), 
+                ha='center', va='bottom', color='black', fontsize=8)
+
 # Exibir no Streamlit
 st.pyplot(fig)
