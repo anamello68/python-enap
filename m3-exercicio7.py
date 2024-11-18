@@ -41,8 +41,12 @@ if st.checkbox('Mostrar tabela'):
 
 st.header('Nº de Deputados por gênero')
 
+# Obter os dados de forma adequada
+sexo_counts = df['sexo'].value_counts()
+
 fig, ax = plt.subplots()
-ax.barh(df['sexo'], df['sexo'].value_counts(), color='skyblue')
+# Passar os índices como eixo Y e os valores como eixo X
+ax.barh(sexo_counts.index, sexo_counts.values, color='skyblue')
 ax.set_xlabel("Nº de Deputados(as)")
 ax.set_ylabel("Gênero")
 ax.set_title("Nº de Deputados por gênero")
