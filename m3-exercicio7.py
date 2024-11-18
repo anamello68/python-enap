@@ -55,3 +55,16 @@ ax.set_title("Nº de Deputados por gênero")
 st.pyplot(fig)
 #st.bar_chart(df['sexo'].value_counts())
 
+# Contar número de deputados por estado
+contagem_estados = dadosFiltrados['siglaUf'].value_counts()
+
+# Criar gráfico de barras
+fig, ax = plt.subplots()
+ax.bar(contagem_estados.index, contagem_estados.values, color='skyblue')
+ax.set_title(f"Número de deputados {opcao} por estado")
+ax.set_xlabel("Estado")
+ax.set_ylabel("Número de Deputados(as)")
+
+# Exibir no Streamlit
+st.pyplot(fig)
+
