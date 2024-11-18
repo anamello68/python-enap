@@ -21,5 +21,5 @@ selected_id = selected.split(' - ')[0].strip()
 # Exibir o id selecionado
 st.write(f'ID Selecionado: {selected_id}')
 
-dadosFiltrados = df[df['id'] == selected_id]
+dadosFiltrados = df[df['id_nome'] == selected]
 st.write(dadosFiltrados)
