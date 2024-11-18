@@ -29,7 +29,7 @@ st.write(df)
 # Selecionar os deputados por gênero
 opcao = st.selectbox(
     'Qual gênero você gostaria de selecionar?',
-     df['sexo'])
+     df['sexo'].unique())
 
 st.write('Você selecionou: ', opcao)
 
