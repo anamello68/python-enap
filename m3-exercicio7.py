@@ -75,7 +75,8 @@ for bar in bars:
         height,                            # Altura do rótulo
         f'{int(height)}',                  # Texto do rótulo
         ha='center',                       # Alinhamento horizontal
-        va='bottom'                        # Alinhamento vertical
+        va='bottom',                       # Alinhamento vertical
+        fontsize=8                         # Tamanho da fonte reduzido
     )
 
 # Exibir no Streamlit
