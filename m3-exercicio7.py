@@ -64,6 +64,8 @@ ax.bar(contagem_estados.index, contagem_estados.values, color='skyblue')
 ax.set_title(f"Número de deputados {opcao} por estado")
 ax.set_xlabel("Estado")
 ax.set_ylabel("Número de Deputados(as)")
+# Rotacionar os rótulos do eixo X
+ax.tick_params(axis='x', rotation=90)
 
 # Exibir no Streamlit
 st.pyplot(fig)
