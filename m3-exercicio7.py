@@ -38,6 +38,16 @@ dadosFiltrados = df[df['sexo'] == opcao]
 
 if st.checkbox('Mostrar tabela'):
   st.write(dadosFiltrados)
+
 st.header('Nº de Deputados por gênero')
-st.bar_chart(df['sexo'].value_counts())
+
+fig, ax = plt.subplots()
+ax.barh(df['sexo'], df['sexo'].value_counts(), color='skyblue')
+ax.set_xlabel("Nº de Deputados(as)")
+ax.set_ylabel("Gênero")
+ax.set_title("Nº de Deputados por gênero")
+
+# Exibir no Streamlit
+st.pyplot(fig)
+#st.bar_chart(df['sexo'].value_counts())
 
